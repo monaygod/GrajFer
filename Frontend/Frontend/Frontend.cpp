@@ -20,3 +20,8 @@ void Frontend::on_Minus_clicked()
 	value = value > 0 ? value - 1 : value;
 	ui.progressBar->setValue(value);
 }
+
+void Frontend::on_pushButton_clicked()
+{
+	
+}

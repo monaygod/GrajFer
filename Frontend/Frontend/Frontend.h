@@ -16,4 +16,6 @@ private:
 private slots:
 	void on_Plus_clicked();
 	void on_Minus_clicked();
+
+	void on_pushButton_clicked();
 };
