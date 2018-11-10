@@ -28,11 +28,12 @@ class Ui_FrontendClass
 {
 public:
     QWidget *centralWidget;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QPushButton *Minus;
     QProgressBar *progressBar;
     QPushButton *Plus;
+    QPushButton *pushButton;
     QMenuBar *menuBar;
     QMenu *menu_File;
     QToolBar *mainToolBar;
@@ -42,37 +43,40 @@ public:
     {
         if (FrontendClass->objectName().isEmpty())
             FrontendClass->setObjectName(QStringLiteral("FrontendClass"));
-        FrontendClass->resize(828, 482);
+        FrontendClass->resize(605, 230);
         centralWidget = new QWidget(FrontendClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        widget = new QWidget(centralWidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(30, 30, 551, 51));
-        horizontalLayout = new QHBoxLayout(widget);
+        layoutWidget = new QWidget(centralWidget);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(30, 30, 551, 51));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        Minus = new QPushButton(widget);
+        Minus = new QPushButton(layoutWidget);
         Minus->setObjectName(QStringLiteral("Minus"));
 
         horizontalLayout->addWidget(Minus);
 
-        progressBar = new QProgressBar(widget);
+        progressBar = new QProgressBar(layoutWidget);
         progressBar->setObjectName(QStringLiteral("progressBar"));
         progressBar->setValue(24);
 
         horizontalLayout->addWidget(progressBar);
 
-        Plus = new QPushButton(widget);
+        Plus = new QPushButton(layoutWidget);
         Plus->setObjectName(QStringLiteral("Plus"));
 
         horizontalLayout->addWidget(Plus);
 
+        pushButton = new QPushButton(centralWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(250, 100, 91, 31));
         FrontendClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(FrontendClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 828, 21));
+        menuBar->setGeometry(QRect(0, 0, 605, 21));
         menu_File = new QMenu(menuBar);
         menu_File->setObjectName(QStringLiteral("menu_File"));
         FrontendClass->setMenuBar(menuBar);
@@ -95,6 +99,7 @@ public:
         FrontendClass->setWindowTitle(QApplication::translate("FrontendClass", "Frontend", nullptr));
         Minus->setText(QApplication::translate("FrontendClass", "Minus", nullptr));
         Plus->setText(QApplication::translate("FrontendClass", "Plus", nullptr));
+        pushButton->setText(QApplication::translate("FrontendClass", "PushButton", nullptr));
         menu_File->setTitle(QApplication::translate("FrontendClass", "&File", nullptr));
     } // retranslateUi
 
