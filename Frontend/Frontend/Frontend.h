@@ -14,8 +14,5 @@ private:
 	Ui::FrontendClass ui;
 
 private slots:
-	void on_Plus_clicked();
-	void on_Minus_clicked();
-
-	void on_pushButton_clicked();
+	void closeTab_(int);
 };

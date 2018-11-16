@@ -1,27 +1,25 @@
 #include "stdafx.h"
 #include "Frontend.h"
+#include "Tab_Welcome.h"
+#include "Tab_Creator.h"
 
 Frontend::Frontend(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
+
+	auto *WelcomeTab = new Tab_Welcome();
+	ui.tabWidget->addTab(WelcomeTab, QString("Welcome"));
+
+	auto *CreatorTab = new Tab_Creator();
+	ui.tabWidget->addTab(CreatorTab, QString("Creator"));
+
+
+	ui.tabWidget->setTabsClosable(true);
+	connect(ui.tabWidget, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab_(int)));
 }
 
-void Frontend::on_Plus_clicked()
+void Frontend::closeTab_(int index)
 {
-	int value = ui.progressBar->value();
-	value = value < 100 ? value + 1 : value;
-	ui.progressBar->setValue(value);
-}
-
-void Frontend::on_Minus_clicked()
-{
-	int value = ui.progressBar->value();
-	value = value > 0 ? value - 1 : value;
-	ui.progressBar->setValue(value);
-}
-
-void Frontend::on_pushButton_clicked()
-{
-	
+	ui.tabWidget->removeTab(index);
 }

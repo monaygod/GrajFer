@@ -12,14 +12,12 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QProgressBar>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QToolBar>
+#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -28,61 +26,36 @@ class Ui_FrontendClass
 {
 public:
     QWidget *centralWidget;
-    QWidget *layoutWidget;
-    QHBoxLayout *horizontalLayout;
-    QPushButton *Minus;
-    QProgressBar *progressBar;
-    QPushButton *Plus;
-    QPushButton *pushButton;
+    QGridLayout *gridLayout;
+    QTabWidget *tabWidget;
     QMenuBar *menuBar;
     QMenu *menu_File;
-    QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
     void setupUi(QMainWindow *FrontendClass)
     {
         if (FrontendClass->objectName().isEmpty())
             FrontendClass->setObjectName(QStringLiteral("FrontendClass"));
-        FrontendClass->resize(605, 230);
+        FrontendClass->resize(1006, 620);
         centralWidget = new QWidget(FrontendClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        layoutWidget = new QWidget(centralWidget);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(30, 30, 551, 51));
-        horizontalLayout = new QHBoxLayout(layoutWidget);
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        Minus = new QPushButton(layoutWidget);
-        Minus->setObjectName(QStringLiteral("Minus"));
+        gridLayout = new QGridLayout(centralWidget);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setContentsMargins(0, 0, 0, 0);
+        tabWidget = new QTabWidget(centralWidget);
+        tabWidget->setObjectName(QStringLiteral("tabWidget"));
 
-        horizontalLayout->addWidget(Minus);
+        gridLayout->addWidget(tabWidget, 0, 0, 1, 1);
 
-        progressBar = new QProgressBar(layoutWidget);
-        progressBar->setObjectName(QStringLiteral("progressBar"));
-        progressBar->setValue(24);
-
-        horizontalLayout->addWidget(progressBar);
-
-        Plus = new QPushButton(layoutWidget);
-        Plus->setObjectName(QStringLiteral("Plus"));
-
-        horizontalLayout->addWidget(Plus);
-
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(250, 100, 91, 31));
         FrontendClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(FrontendClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 605, 21));
+        menuBar->setGeometry(QRect(0, 0, 1006, 21));
         menu_File = new QMenu(menuBar);
         menu_File->setObjectName(QStringLiteral("menu_File"));
         FrontendClass->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(FrontendClass);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        FrontendClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
         statusBar = new QStatusBar(FrontendClass);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         FrontendClass->setStatusBar(statusBar);
@@ -97,9 +70,6 @@ public:
     void retranslateUi(QMainWindow *FrontendClass)
     {
         FrontendClass->setWindowTitle(QApplication::translate("FrontendClass", "Frontend", nullptr));
-        Minus->setText(QApplication::translate("FrontendClass", "Minus", nullptr));
-        Plus->setText(QApplication::translate("FrontendClass", "Plus", nullptr));
-        pushButton->setText(QApplication::translate("FrontendClass", "PushButton", nullptr));
         menu_File->setTitle(QApplication::translate("FrontendClass", "&File", nullptr));
     } // retranslateUi
 
