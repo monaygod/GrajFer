@@ -8,6 +8,7 @@ ResizableFrame::ResizableFrame(QWidget *parent) :
 	QFrame(parent)
 {
 	setMouseTracking(true);
+	qDebug() << "created";
 }
 
 ResizableFrame::~ResizableFrame()
@@ -19,6 +20,16 @@ void ResizableFrame::mousePressEvent(QMouseEvent *event)
 	if (event->button() == Qt::LeftButton) {
 		dragStartPosition = event->pos();
 		dragStartGeometry = geometry();
+		if(startPos == move)
+			setCursor(Qt::ClosedHandCursor);
+	}
+}
+
+void ResizableFrame::mouseReleaseEvent(QMouseEvent *event)
+{
+	if (event->button() == Qt::LeftButton) {
+		if (startPos == move)
+			setCursor(Qt::OpenHandCursor);
 	}
 }
 
@@ -61,7 +72,8 @@ void ResizableFrame::mouseMoveEvent(QMouseEvent *event)
 		}
 		else {
 			startPos = move;
-			setCursor(Qt::SizeAllCursor);
+			setCursor(Qt::OpenHandCursor);
+
 		}
 		return;
 	}

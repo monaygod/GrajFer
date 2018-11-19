@@ -15,6 +15,7 @@ public:
 	enum startPositions { topleft, left, bottomleft, bottom, bottomright, right, topright, top, move } startPositions;
 protected:
 	void mousePressEvent(QMouseEvent *event);
+	void mouseReleaseEvent(QMouseEvent * event);
 	void mouseMoveEvent(QMouseEvent *event);
 
 private:

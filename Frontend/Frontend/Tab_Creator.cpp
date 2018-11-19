@@ -3,6 +3,7 @@
 #include <qevent.h>
 #include "MyPanel.h"
 #include "ResizableFrame.h"
+#include <iostream>
 
 Tab_Creator::Tab_Creator(QWidget *parent)
 	: QWidget(parent)
@@ -35,6 +36,16 @@ Tab_Creator::~Tab_Creator()
 void Tab_Creator::mousePressEvent(QMouseEvent *event)
 {
 	offset_ = event->pos();
+	if (event->buttons() & Qt::RightButton)
+	{
+		qDebug() << "noelo";
+		this->move(mapToParent(event->pos() - offset_));
+		ResizableFrame *r2 = new ResizableFrame(ui.frame);
+		r2->setGeometry(QRect(event->pos().x(), event->pos().y(), 120, 80));
+		r2->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+			"background-color: rgb(250, 255, 255);")); 
+		r2->show();
+	}
 }
 
 void Tab_Creator::mouseMoveEvent(QMouseEvent *event)
