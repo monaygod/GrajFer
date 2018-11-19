@@ -11,9 +11,9 @@ class Tab_Creator : public QWidget
 public:
 	Tab_Creator(QWidget *parent = Q_NULLPTR);
 	~Tab_Creator();
-	void mousePressEvent(QMouseEvent* event);
-
-	void mouseMoveEvent(QMouseEvent * event);
+	void keyPressEvent(QKeyEvent * event) override;
+	void mousePressEvent(QMouseEvent* event) override;
+	void mouseMoveEvent(QMouseEvent * event) override;
 
 private:
 	Ui::Tab_Creator ui;
