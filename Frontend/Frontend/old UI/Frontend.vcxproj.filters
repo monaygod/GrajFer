@@ -39,27 +39,9 @@
     <ClCompile Include="Frontend.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dragwidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tab_Welcome.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tab_Creator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MyPanel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ResizableFrame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dragwidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -67,38 +49,14 @@
     <QtMoc Include="Frontend.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="Tab_Welcome.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="Tab_Creator.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="MyPanel.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="ResizableFrame.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="Frontend.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="Tab_Welcome.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="Tab_Creator.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="MyPanel.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Frontend.qrc">
-      <Filter>Resource Files</Filter>
-    </QtRcc>
-    <QtRcc Include="draggableicons.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
   </ItemGroup>
