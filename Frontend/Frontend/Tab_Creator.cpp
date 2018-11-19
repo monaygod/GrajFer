@@ -10,7 +10,7 @@ Tab_Creator::Tab_Creator(QWidget *parent)
 {
 	ui.setupUi(this);
 	//QKeyEvent::accept();
-	QWidget::setFocusPolicy(Qt::ClickFocus);
+	Tab_Creator::setFocusPolicy(Qt::ClickFocus);
 
 	
 	ResizableFrame *r = new ResizableFrame(ui.frame);

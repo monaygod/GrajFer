@@ -121,6 +121,7 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DockTest.cpp" />
     <ClCompile Include="dragwidget.cpp" />
     <ClCompile Include="Frontend.cpp" />
     <ClCompile Include="main.cpp" />
@@ -147,6 +148,12 @@
       <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_CONCURRENT_LIB</Define>
     </QtMoc>
     <QtMoc Include="Frontend.h" />
+    <QtMoc Include="DockTest.h">
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtConcurrent;$(QTDIR)\include\QtCharts;$(QTDIR)\include\QtQuick</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_CONCURRENT_LIB;QT_CHARTS_LIB;QT_QUICK_LIB</Define>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtConcurrent;$(QTDIR)\include\QtCharts;$(QTDIR)\include\QtQuick</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UNICODE;_UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_CONCURRENT_LIB;QT_CHARTS_LIB;QT_QUICK_LIB</Define>
+    </QtMoc>
     <ClInclude Include="dragwidget.h" />
     <QtMoc Include="MyPanel.h">
       <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName)\.;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtConcurrent</IncludePath>
@@ -163,6 +170,7 @@
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="DockTest.ui" />
     <QtUic Include="Frontend.ui" />
     <QtUic Include="MyPanel.ui" />
     <QtUic Include="Tab_Creator.ui" />

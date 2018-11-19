@@ -2,6 +2,7 @@
 #include "Frontend.h"
 #include "Tab_Welcome.h"
 #include "Tab_Creator.h"
+#include "DockTest.h"
 
 Frontend::Frontend(QWidget *parent)
 	: QMainWindow(parent)
@@ -13,6 +14,9 @@ Frontend::Frontend(QWidget *parent)
 
 	auto *CreatorTab = new Tab_Creator();
 	ui.tabWidget->addTab(CreatorTab, QString("Creator"));
+
+	auto *DockTest1 = new DockTest();
+	ui.tabWidget->addTab(DockTest1, QString("DockTest"));
 
 
 	ui.tabWidget->setTabsClosable(true);

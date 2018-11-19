@@ -54,6 +54,9 @@
     <ClCompile Include="ResizableFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DockTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -79,6 +82,9 @@
     <QtMoc Include="ResizableFrame.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="DockTest.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="Frontend.ui">
@@ -91,6 +97,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="MyPanel.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="DockTest.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

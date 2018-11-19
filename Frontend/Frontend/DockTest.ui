@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DockTest</class>
+ <widget class="QMainWindow" name="DockTest">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>777</width>
+    <height>512</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>DockTest</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QListWidget" name="listWidget"/>
+      </item>
+      <item>
+       <widget class="QTreeWidget" name="treeWidget">
+        <column>
+         <property name="text">
+          <string notr="true">1</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget">
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents"/>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_2">
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2"/>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
