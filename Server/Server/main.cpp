@@ -1,5 +1,6 @@
 #include <QtCore/QCoreApplication>
 #include <QCommandLineParser>
+#include "ServerGrajFer.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,7 +16,8 @@ int main(int argc, char *argv[])
 
 	parser.process(app);
 
-
+	ServerGrajFer server;
+	server.initServer();
 
 	return app.exec();
 }
