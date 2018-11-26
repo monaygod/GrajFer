@@ -1,0 +1,40 @@
+Kreator:
+* zaczytanie obrazków
+* przenoszenie obrazków
+* dodawanie obszarów
+* definiowanie typów (nowych  "obiektów")
+* zapis i wczytanie stanu
+
+Klient:
+* renderowanie obrazu
+* wysy³anie informacji o zmianie stanu
+* odbieranie komunikatów z serwera o zmianie stanu
+
+Serwer:
+* obs³uga zapytañ
+* utrzymywanie stanu gry
+* wysy³anie informacji o zmianie na planszy
+* obs³uga pokoi
+
+Tech:
+* VS2017 Community 1071
+* QT for VS2017
+* QT 5.11.2 MSVC2017x64 (odznaczyæ resztê podczas instalacji)
+x ReSharper C++
+
+Rozdzielenie obowi¹zków:
+* Dominik:
+    - Zapis stanu/ gotowej gry
+
+* Jonatan:
+    - dodawanie kolorowych warstw
+        - tworzenie pozycji na liœcie obiektów
+
+* Robert:
+    - command handler
+
+    funkcja ( komenda, tablica argumentów) // dispatcher
+    user rozpoznawalny po id po³¹czenia
+
+* Kuba:
+    - socket po stronie klienta
