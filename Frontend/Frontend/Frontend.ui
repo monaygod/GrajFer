@@ -46,9 +46,21 @@
      <string>&amp;File</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuServer">
+    <property name="title">
+     <string>Server</string>
+    </property>
+    <addaction name="actionTest_send"/>
+   </widget>
    <addaction name="menu_File"/>
+   <addaction name="menuServer"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionTest_send">
+   <property name="text">
+    <string>Test send</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

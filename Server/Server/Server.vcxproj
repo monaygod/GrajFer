@@ -97,6 +97,7 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CommandHandler.cpp" />
     <ClCompile Include="GameServer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ServerGrajFer.cpp" />
@@ -108,6 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="TcpSocketThread.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="CommandHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

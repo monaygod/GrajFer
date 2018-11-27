@@ -27,3 +27,7 @@ void Frontend::closeTab_(int index)
 {
 	ui.tabWidget->removeTab(index);
 }
+
+void Frontend::test_server(int)
+{
+}

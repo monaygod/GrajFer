@@ -15,4 +15,5 @@ private:
 
 private slots:
 	void closeTab_(int);
+	void test_server(int);
 };

@@ -4,6 +4,7 @@
 TcpClient::TcpClient(QObject *parent)
 	: QObject(parent)
 {
+	
 }
 
 TcpClient::~TcpClient()

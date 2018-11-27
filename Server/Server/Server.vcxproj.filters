@@ -38,6 +38,9 @@
     <ClCompile Include="TcpSocketThread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CommandHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="GameServer.h">
@@ -47,6 +50,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="TcpSocketThread.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="CommandHandler.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
