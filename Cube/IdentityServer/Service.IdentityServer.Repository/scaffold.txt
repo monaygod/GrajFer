@@ -1,0 +1,9 @@
+﻿dotnet ef dbcontext scaffold "Server=10.10.1.251;Database=dadelo-all;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -c UserContext --context-dir . -d -f -o Model --schema bo
+
+Instrukcja:
+1. W Repository.csproj do PackageReference Microsoft.EntityFrameworkCore.Design
+    dodaj do IncludeAssets 'compile'
+2. EntityTypeGenerator.cs -> odkomentuj (ctrl + a -> ctrl + shift + /)
+3. Upewnij się ze się buduje
+4. Możesz zrobić scaffold
+5. Usuń compile z csproj i zakomentuj EntityTypeGenerator

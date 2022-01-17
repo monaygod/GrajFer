@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <Configurations>Debug;Release;GENERATECLIENTAPI</Configurations>
+        <Platforms>AnyCPU</Platforms>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Infrastructure\Hawk.Infrastructure\Hawk.Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>

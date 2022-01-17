@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Configurations>Debug;Release;GENERATECLIENTAPI</Configurations>
+        <Platforms>AnyCPU</Platforms>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Infrastructure\Infrastructure\Infrastructure.csproj" />
+    </ItemGroup>
+</Project>

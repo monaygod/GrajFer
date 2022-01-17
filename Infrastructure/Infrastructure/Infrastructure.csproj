@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Configurations>Debug;Release;GENERATECLIENTAPI</Configurations>
+        <Platforms>AnyCPU</Platforms>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="Auth\Model\NewFile1.txt" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="10.1.1" />
+      <PackageReference Include="Dapper" Version="2.0.90" />
+      <PackageReference Include="FluentValidation" Version="10.3.3" />
+      <PackageReference Include="MediatR" Version="9.0.0" />
+      <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+      <PackageReference Include="Microsoft.Data.SqlClient" Version="3.0.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Data.SqlClient, Version=2.0.20168.4, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5">
+        <HintPath>..\Hawk.Cube.Product.Api\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(Configuration)' == 'GENERATECLIENTAPI' ">
+      <None Update="SwaggerGenerator\GenerateAngularClient.cmd">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>

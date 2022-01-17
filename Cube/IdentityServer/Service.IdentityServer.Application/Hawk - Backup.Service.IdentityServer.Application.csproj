@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <Configurations>Debug;Release;GENERATECLIENTAPI</Configurations>
+        <Platforms>AnyCPU</Platforms>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Hawk.Service.IdentityServer.Repository\Hawk.Service.IdentityServer.Repository.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="10.3.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="UserAggregate\RevokeToken\Validation\" />
+    </ItemGroup>
+
+</Project>
