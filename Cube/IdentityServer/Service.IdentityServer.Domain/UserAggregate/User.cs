@@ -11,14 +11,18 @@ namespace Service.IdentityServer.Domain.UserAggregate
 {
     public class User : Entity, IAggregateRoot
     {
-        public string UserName { get; private set; }
-        public Password Password { get; private set; }
-        public virtual List<RefreshToken> RefreshTokens { get; private set; }
-        public virtual List<UserPermission> Permission { get; private set; }
-
-        public static int expireHours = -9;
+        private static int expireHours = -9;
         
+        private string _userName;
+        private Password _password;
+        private List<RefreshToken> _refreshTokens = new();
+        private List<UserPermission> _userPermissions = new();
         private User() { }
+        public string UserName => _userName;
+        public Password Password => _password;
+        public IReadOnlyCollection<RefreshToken> RefreshTokens => _refreshTokens;
+        public IReadOnlyCollection<UserPermission> Permission => _userPermissions;
+        
         public bool ValidatePassword(string pass)
         {
             return Password.ValidatePassword(pass);
@@ -35,11 +39,10 @@ namespace Service.IdentityServer.Domain.UserAggregate
             }
 
             var newRefreshToken = JwtUtils.GenerateRefreshToken();
-            RefreshTokens.Add(new RefreshToken()
+            _refreshTokens.Add(new RefreshToken()
             {
                 Token = newRefreshToken,
                 RefreshTokenCreationDate = DateTime.UtcNow,
-                UserId = Id
             });
             //TODO NOWY EVENT?
             return Convert.ToBase64String(newRefreshToken);
@@ -64,7 +67,7 @@ namespace Service.IdentityServer.Domain.UserAggregate
         public void RevokeRefreshToken(string refreshToken)
         {
             var refToken = RefreshTokens.FirstOrDefault(rt => Convert.ToBase64String(rt.Token).Equals(refreshToken));
-            RefreshTokens.Remove(refToken);
+            _refreshTokens.Remove(refToken);
             //RefreshTokens.Clear();
         }
 
@@ -74,7 +77,7 @@ namespace Service.IdentityServer.Domain.UserAggregate
 
             for(int i=0; i < refTokens.Length; i++)
             {
-                RefreshTokens.Remove(refTokens[i]);
+                _refreshTokens.Remove(refTokens[i]);
             }
 
         }

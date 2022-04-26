@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using Hawk.Infrastructure.Main.Application.Command;
 using Infrastructure.Application.Command;
 
 namespace Service.IdentityServer.Application.UserAggregate.Login.Validation
@@ -8,11 +7,10 @@ namespace Service.IdentityServer.Application.UserAggregate.Login.Validation
     {
         public LoginCommandValidator()
         {
-            RuleFor(x => x.Email)
+            RuleFor(x => x.UserName)
                 .NotNull()
-                .NotEmpty()
-                .EmailAddress();
-                //.WithMessage("Wrong email format!");
+                .NotEmpty();
+                //.WithMessage("Wrong username format!");
             RuleFor(x => x.Password)
                 .NotNull()
                 .NotEmpty();

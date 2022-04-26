@@ -10,17 +10,18 @@ namespace Infrastructure.DDD
     /// <summary>
     /// Base class for entities.
     /// </summary>
-    public abstract class Entity :DDDBuildingBlock
+    public abstract class Entity : DDDBuildingBlock
     {
-        public Guid Id { get; private set; }
-        
+        public Guid Id;
+        [NotMapped]
         private List<IDomainEvent> _domainEvents;
-  
+        [NotMapped]
         private List<IntegrationEvent.IntegrationEvent> _integrationEvents;
 
         /// <summary>
         /// Domain events occurred.
         /// </summary>
+        [NotMapped]
         public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents?.AsReadOnly()??new ReadOnlyCollection<IDomainEvent>(new List<IDomainEvent>());
 
         [NotMapped]

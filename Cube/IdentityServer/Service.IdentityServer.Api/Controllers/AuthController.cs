@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Hawk.Infrastructure.Main.Auth.JwtUtils;
 using Infrastructure.Auth.JwtUtils;
 using Service.IdentityServer.Application.UserAggregate.Login;
 using Service.IdentityServer.Application.UserAggregate.RefreshAccessToken;
@@ -31,8 +30,6 @@ namespace Service.IdentityServer.Api.Controllers
         ///
         ///     POST /Login
         ///     {
-        ///        "email": "jakub.czerwionka@oponeo.pl",
-        ///        "password": "Dadelo2021"
         ///     }
         ///
         /// </remarks>

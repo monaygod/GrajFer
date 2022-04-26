@@ -9,12 +9,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.Startup
 {
-    public class HawkStartupHelper
+    public class MainStartupHelper
     {
         public IConfiguration Configuration { get; }
         public ICollection<Type> Types { get; set; }
 
-        public HawkStartupHelper(IConfiguration configuration)
+        public MainStartupHelper(IConfiguration configuration)
         {
             Configuration = configuration;
             Types ??= new List<Type>();
@@ -23,7 +23,7 @@ namespace Infrastructure.Startup
 
         private void LoadStartupTypes()
         {
-            var allAssemblies = HawkExtensionMethods.GetAssemblies().SelectHawkAssemblies();
+            var allAssemblies = ExtensionMethods.ExtensionMethods.GetAssemblies().SelectMainAssemblies();
             foreach (Assembly assembly in allAssemblies)
             {
                 foreach (Type type in assembly.GetTypes())

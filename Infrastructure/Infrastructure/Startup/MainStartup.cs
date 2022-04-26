@@ -22,19 +22,19 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Infrastructure.Startup
 {
-    public class HawkStartup
+    public class MainStartup
     {
-        public HawkStartup(IConfiguration configuration)
+        public MainStartup(IConfiguration configuration)
         {
             Configuration = configuration;
-            StartupHelper = new HawkStartupHelper(configuration);
+            StartupHelper = new MainStartupHelper(configuration);
             EntryAssemblyName = Assembly.GetEntryAssembly()
                 .FullName.Split(',')
                 .First();
         }
 
         public IConfiguration Configuration { get; }
-        protected HawkStartupHelper StartupHelper { get; set; }
+        protected MainStartupHelper StartupHelper { get; set; }
         protected string EntryAssemblyName { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
@@ -47,7 +47,7 @@ namespace Infrastructure.Startup
             services.AddDistributedMemoryCache();
 
             services.AddMediatR(
-                HawkExtensionMethods.GetAssemblies()
+                ExtensionMethods.ExtensionMethods.GetAssemblies()
                     .ToArray());
             // services.AddSingleton(HawkMapperConfigurationExpression.CreateMapper());
             services.InstallGenericInterfaceWithAllInheritedClasses(typeof(ICommandValidator<>));

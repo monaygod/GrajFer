@@ -3,7 +3,7 @@ using Infrastructure.DDD;
 
 namespace Service.IdentityServer.Domain.ValueObject
 {
-    public class Password : Entity
+    public class Password : Infrastructure.DDD.ValueObject
     {
         public byte[] PassHash { get; set; }
         public int SaltValue { get; set; }

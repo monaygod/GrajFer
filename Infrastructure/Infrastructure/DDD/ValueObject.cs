@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Reflection;
 using Infrastructure.DDD.Interface;
@@ -9,7 +10,9 @@ namespace Infrastructure.DDD
 {
     public abstract class ValueObject : DDDBuildingBlock, IEquatable<ValueObject>
     {
+        [NotMapped]
         private List<PropertyInfo> _properties;
+        [NotMapped]
         private List<FieldInfo> _fields;
 
         public static bool operator ==(ValueObject obj1, ValueObject obj2)

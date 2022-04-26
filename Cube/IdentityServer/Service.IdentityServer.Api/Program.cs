@@ -1,5 +1,3 @@
-using Hawk.Infrastructure.Main.ExtensionMethods;
-using Hawk.Infrastructure.Main.SwaggerGenerator;
 using Infrastructure.ExtensionMethods;
 using Microsoft.Extensions.Hosting;
 
@@ -21,7 +19,7 @@ namespace Service.IdentityServer.Api
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseHawkStartup();
+                    webBuilder.UseMainStartup();
                 });
     }
 }

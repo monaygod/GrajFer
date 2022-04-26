@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Infrastructure.Application.Command.Interface;
 using Infrastructure.DDD.Interface;
-using Infrastructure.Mapping;
 using Service.IdentityServer.Repository;
 using Microsoft.AspNetCore.Http;
 
@@ -21,7 +20,7 @@ namespace Service.IdentityServer.Application.UserAggregate.Login
         }
         public async Task<LoginCommandResult> Handle(LoginCommand command, CancellationToken cancellationToken)
         {
-            var user = _userRepository.GetByEmail(command.Email);
+            var user = _userRepository.GetByUserName(command.UserName);
 
             if (!user.ValidatePassword(command.Password))
             {

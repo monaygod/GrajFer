@@ -11,14 +11,17 @@ namespace Infrastructure.DDD
     {
         private readonly TContext _dbContext;
         private readonly IDomainEventsDispatcher _domainEventsDispatcher;
-        private readonly IIntegrationEventDispatcher<TContext> _integrationEventDispatcher;
+        //private readonly IIntegrationEventDispatcher<TContext> _integrationEventDispatcher;
         private readonly ICollection<Entity> _domainEventSource;
 
-        public UnitOfWork(TContext dbContext,IDomainEventsDispatcher domainEventsDispatcher, IIntegrationEventDispatcher<TContext> integrationEventDispatcher)
+        public UnitOfWork(
+            TContext dbContext,IDomainEventsDispatcher domainEventsDispatcher
+            //IIntegrationEventDispatcher<TContext> integrationEventDispatcher
+            )
         {
             this._dbContext = dbContext;
              this._domainEventsDispatcher = domainEventsDispatcher;
-             _integrationEventDispatcher = integrationEventDispatcher;
+             //_integrationEventDispatcher = integrationEventDispatcher;
              _domainEventSource = new List<Entity>();
         }
 
@@ -26,7 +29,7 @@ namespace Infrastructure.DDD
         {
             await this._domainEventsDispatcher.DispatchEventsAsync(_domainEventSource);
             var result = await this._dbContext.SaveChangesAsync(cancellationToken);
-            _integrationEventDispatcher.DispatchIntegrationEvent();
+            //_integrationEventDispatcher.DispatchIntegrationEvent();
             return result;
         }
 

@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Infrastructure.ExtensionMethods
 {
-    public static class HawkExtensionMethods
+    public static class ExtensionMethods
     {
         public static IEnumerable<Assembly> GetAssemblies()
         {
@@ -29,9 +29,9 @@ namespace Infrastructure.ExtensionMethods
             while (stack.Count > 0);
         }
         
-        public static IEnumerable<Assembly> SelectHawkAssemblies(this IEnumerable<Assembly> assemblies)
+        public static IEnumerable<Assembly> SelectMainAssemblies(this IEnumerable<Assembly> assemblies)
         {
-            return assemblies.Where(x => x.FullName != null && x.FullName.StartsWith("Hawk."));
+            return assemblies.Where(x => x.FullName != null);
         }
     }
 }

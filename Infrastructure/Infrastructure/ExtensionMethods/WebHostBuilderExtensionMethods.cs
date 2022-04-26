@@ -5,9 +5,9 @@ namespace Infrastructure.ExtensionMethods
 {
     public static class WebHostBuilderExtensionMethods
     {
-        public static IWebHostBuilder UseHawkStartup(this IWebHostBuilder hostBuilder)
+        public static IWebHostBuilder UseMainStartup(this IWebHostBuilder hostBuilder)
         {
-            return hostBuilder.UseStartup<HawkStartup>();
+            return hostBuilder.UseStartup<MainStartup>();
         }
     }
 }

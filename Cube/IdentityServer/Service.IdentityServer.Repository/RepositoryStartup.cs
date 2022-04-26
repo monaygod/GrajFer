@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.EquivalencyExpression;
+using Infrastructure.DDD;
 using Infrastructure.DDD.Interface;
 using Infrastructure.Startup;
 using Service.IdentityServer.Domain.UserAggregate;
@@ -20,12 +21,12 @@ namespace Service.IdentityServer.Repository
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<UserContext>(Options => { });
-
             services.AddScoped<IRepository<User>, UserRepository>();
             services.AddScoped<UserRepository, UserRepository>();
+            services.AddScoped<IUnitOfWork<UserContext>, UnitOfWork<UserContext>>();
+            services.AddScoped<UnitOfWork<UserContext>, UnitOfWork<UserContext>>();
             
-            var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = ":memory:" };
+            var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = "w:\\Database.db" };
             var connectionString = connectionStringBuilder.ToString();
             var connection = new SqliteConnection(connectionString);
             connection.Open();  //see https://github.com/aspnet/EntityFramework/issues/6968

@@ -12,37 +12,29 @@ namespace Service.IdentityServer.Repository
     public class UserRepository : IRepository<User>
     {
         private readonly UserContext _context;
-        private readonly IEntityMapper<User, Model.User> _mapper;
 
-        public UserRepository(UserContext context, IEntityMapper<User, Model.User> mapper)
+        public UserRepository(UserContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
         public User GetById(int id)
         {
             //TODO lazyloading
             //var anyref = _context.UserRefreshTokens.ToList();
             var queryResult = _context.Users
-                .Include(x => x.UserAuthorizations)
-                .Include(x=>x.UserPermissions)
-                .ThenInclude(x=>x.Permission)
-                .FirstOrDefault(x => x.UserId == id && x.UserStatusId == 1);
+                .FirstOrDefault();
             
-            return _mapper.MapToDDD(queryResult);
+            return queryResult;
         }
         
-        public User GetByEmail(string email)
+        public User GetByUserName(string userName)
         {
             try
             {
                 var queryResult = _context.Users
-                    .Include(x => x.UserAuthorizations)
-                    .Include(x => x.UserPermissions)
-                    .ThenInclude(x => x.Permission)
-                    .First(x => x.Email == email && x.UserStatusId == 1);
+                    .First(x => x.UserName == userName);
 
-                return _mapper.MapToDDD(queryResult);
+                return queryResult;
             }
             catch
             {
@@ -55,13 +47,9 @@ namespace Service.IdentityServer.Repository
         {
             try
             {
-                var userByRefToken = _context.UserAuthorizations.FirstOrDefault(x => x.RefreshToken == refreshToken);
                 var user = _context.Users
-                    .Include(x => x.UserAuthorizations)
-                    .Include(x => x.UserPermissions)
-                    .ThenInclude(x => x.Permission)
-                    .First(x => x.UserId == userByRefToken.UserId);
-                return _mapper.MapToDDD(user);
+                    .First(x => x.RefreshTokens.Any(y=>y.Token == refreshToken));
+                return user;
             }
             catch
             {
