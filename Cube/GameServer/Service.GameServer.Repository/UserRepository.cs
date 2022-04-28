@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Infrastructure.DDD.Interface;
-using Infrastructure.Mapping;
-using Service.IdentityServer.Domain.UserAggregate;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
+using Service.GameServer.Domain.UserAggregate;
 
-namespace Service.IdentityServer.Repository
+namespace Service.GameServer.Repository
 {
     
     public class UserRepository : IRepository<User>

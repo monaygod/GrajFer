@@ -1,14 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net5.0</TargetFramework>
         <Configurations>Debug;Release;GENERATECLIENTAPI</Configurations>
         <Platforms>AnyCPU</Platforms>
-        <RootNamespace>Service.GameRepository.Application</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Service.GameRepository.Repository\Service.GameRepository.Repository.csproj" />
+      <ProjectReference Include="..\Hawk.Service.IdentityServer.Repository\Hawk.Service.IdentityServer.Repository.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -16,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Commands" />
+      <Folder Include="UserAggregate\RevokeToken\Validation\" />
     </ItemGroup>
 
 </Project>
