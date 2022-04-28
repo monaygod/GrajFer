@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Configurations>Debug;Release;GENERATECLIENTAPI</Configurations>
+        <Platforms>AnyCPU</Platforms>
+        <RootNamespace>Service.GameServer.Application</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Service.GameServer.Repository\Service.GameServer.Repository.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="10.3.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="UserAggregate\RevokeToken\Validation\" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+		<PackageId>Service.GameRepository.Api</PackageId>
+		<Configurations>Debug;Release;GENERATECLIENTAPI</Configurations>
+		<Platforms>AnyCPU</Platforms>
+		<RootNamespace>Service.GameRepository.Api</RootNamespace>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="AutoMapper.Collection.EntityFrameworkCore" Version="7.0.1" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.3" />
+		<PackageReference Include="MediatR" Version="9.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Service.GameRepository.Application\Service.GameRepository.Application.csproj" />
+	</ItemGroup>
+</Project>

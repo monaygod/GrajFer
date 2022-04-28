@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Scaffolding.Internal;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Service.IdentityServer.Repository
+namespace Service.GameServer.Repository
 {
     public class EntityTypeGenerator : CSharpEntityTypeGenerator
     {

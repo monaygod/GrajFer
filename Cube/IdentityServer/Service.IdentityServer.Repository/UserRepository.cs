@@ -21,20 +21,20 @@ namespace Service.IdentityServer.Repository
         {
             //TODO lazyloading
             //var anyref = _context.UserRefreshTokens.ToList();
-            var queryResult = _context.Users
-                .FirstOrDefault();
+            //var queryResult = _context.Users
+            //    .FirstOrDefault();
             
-            return queryResult;
+            return User.Create();
         }
         
         public User GetByUserName(string userName)
         {
             try
             {
-                var queryResult = _context.Users
-                    .First(x => x.UserName == userName);
+                //var queryResult = _context.Users
+                //    .First(x => x.UserName == userName);
 
-                return queryResult;
+                return User.Create();
             }
             catch
             {
@@ -47,9 +47,10 @@ namespace Service.IdentityServer.Repository
         {
             try
             {
-                var user = _context.Users
-                    .First(x => x.RefreshTokens.Any(y=>y.Token == refreshToken));
-                return user;
+                //var user = _context.Users
+                //    .First(x => x.RefreshTokens.Any(y=>y.Token == refreshToken));
+                //return user;
+                return User.Create();
             }
             catch
             {

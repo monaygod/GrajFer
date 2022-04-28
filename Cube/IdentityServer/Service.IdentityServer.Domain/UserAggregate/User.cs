@@ -5,6 +5,7 @@ using Infrastructure.Auth.JwtUtils;
 using Infrastructure.Auth.Model;
 using Infrastructure.DDD;
 using Infrastructure.DDD.Interface;
+using Microsoft.AspNetCore.Mvc;
 using Service.IdentityServer.Domain.ValueObject;
 
 namespace Service.IdentityServer.Domain.UserAggregate
@@ -22,6 +23,15 @@ namespace Service.IdentityServer.Domain.UserAggregate
         public Password Password => _password;
         public IReadOnlyCollection<RefreshToken> RefreshTokens => _refreshTokens;
         public IReadOnlyCollection<UserPermission> Permission => _userPermissions;
+        
+        public static User Create()
+        {
+            return new User
+            {
+                _password = new Password(),
+                _userName = "aaaaaaaa"
+            };
+        }
         
         public bool ValidatePassword(string pass)
         {

@@ -6,6 +6,7 @@ using Service.IdentityServer.Application.UserAggregate.RevokeToken;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Service.IdentityServer.Application.UserAggregate.AddUser;
 
 
 namespace Service.IdentityServer.Api.Controllers
@@ -66,6 +67,14 @@ namespace Service.IdentityServer.Api.Controllers
         {
             await _mediator.Send(command);
             return Ok();
+        }
+        
+        [HttpPost]
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<AddUserCommandResult> AddUser(AddUserCommand command)
+        {
+            return await _mediator.Send(command);
         }
     }
 }

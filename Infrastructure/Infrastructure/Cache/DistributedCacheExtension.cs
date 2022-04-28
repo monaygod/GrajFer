@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
-namespace Hawk.Infrastructure.Cache
+namespace Infrastructure.Cache
 {
     public static class DistributedCacheExtension
     {

@@ -26,11 +26,16 @@ namespace Service.IdentityServer.Repository
             services.AddScoped<IUnitOfWork<UserContext>, UnitOfWork<UserContext>>();
             services.AddScoped<UnitOfWork<UserContext>, UnitOfWork<UserContext>>();
             
-            var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = "w:\\Database.db" };
-            var connectionString = connectionStringBuilder.ToString();
-            var connection = new SqliteConnection(connectionString);
-            connection.Open();  //see https://github.com/aspnet/EntityFramework/issues/6968
-            services.AddDbContext<UserContext>(options => options.UseSqlite(connection));
+            var connectionStringBuilder = new SqliteConnectionStringBuilder
+            {
+                DataSource = "w:\\Database.db",
+                Pooling = false,
+            };
+           //var connectionString = connectionStringBuilder.ToString();
+           //var connection = new SqliteConnection(connectionString);
+           ////connection.Open();  //see https://github.com/aspnet/EntityFramework/issues/6968
+           //services.AddDbContext<UserContext>(options => options.UseSqlite(connection));
+           services.AddDbContext<UserContext>();
             
             services.AddAutoMapper(
                 (serviceProvider, automapper) =>
