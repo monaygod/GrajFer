@@ -9,11 +9,10 @@ namespace Infrastructure.Auth.JwtUtils
     public static class JwtUtils
     {
         private static readonly string secret = "fsefrgcrgerwgcrgwrvwgergvewgvre";
-
-
+        
         public static string GenerateAccessToken(ClaimsIdentity claims)
         {
-            return JwtTools.GenerateAccessToken(claims, DateTime.UtcNow.AddMinutes(1), secret);
+            return JwtTools.GenerateAccessToken(claims, DateTime.UtcNow.AddMinutes(10), secret);
         }
 
         public static IEnumerable<Claim> ValidateJwtToken(string token)

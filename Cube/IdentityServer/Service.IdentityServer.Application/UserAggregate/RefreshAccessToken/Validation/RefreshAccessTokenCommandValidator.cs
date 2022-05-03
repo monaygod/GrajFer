@@ -10,7 +10,7 @@ namespace Service.IdentityServer.Application.UserAggregate.RefreshAccessToken.Va
             RuleFor(x => x.RefreshToken)
                 .NotNull()
                 .NotEmpty()
-                .Length(88) //dlugosc reftokena, do poprawy??
+                .Length(88)
                 .WithMessage("Wrong refresh token format!");
         }
     }

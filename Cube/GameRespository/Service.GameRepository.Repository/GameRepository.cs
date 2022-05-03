@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Infrastructure.DDD.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Service.GameRepository.Domain.UserAggregate;
+using Service.GameRepository.Domain.GameFileAggregate;
 
 namespace Service.GameRepository.Repository
 {

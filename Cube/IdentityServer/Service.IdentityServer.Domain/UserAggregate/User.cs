@@ -5,7 +5,6 @@ using Infrastructure.Auth.JwtUtils;
 using Infrastructure.Auth.Model;
 using Infrastructure.DDD;
 using Infrastructure.DDD.Interface;
-using Microsoft.AspNetCore.Mvc;
 using Service.IdentityServer.Domain.ValueObject;
 
 namespace Service.IdentityServer.Domain.UserAggregate
@@ -24,13 +23,13 @@ namespace Service.IdentityServer.Domain.UserAggregate
         public IReadOnlyCollection<RefreshToken> RefreshTokens => _refreshTokens;
         public IReadOnlyCollection<UserPermission> Permission => _userPermissions;
         
-        public static User Create()
+        public User(Guid id, string userName, string password, List<string> permissions = null)
         {
-            return new User
-            {
-                _password = new Password(),
-                _userName = "aaaaaaaa"
-            };
+            Id = id;
+            _password = new Password(password);
+            _userName = userName;
+            _userPermissions = permissions?.Select(x => new UserPermission(x))
+                .ToList();
         }
         
         public bool ValidatePassword(string pass)
@@ -40,7 +39,6 @@ namespace Service.IdentityServer.Domain.UserAggregate
 
         public string GenerateRefreshToken(string refreshToken = "")
         {
-            //RefreshTokens.Clear();
             RevokeExpiredRefreshTokens();
 
             if (string.IsNullOrEmpty(refreshToken) == false)
@@ -49,11 +47,7 @@ namespace Service.IdentityServer.Domain.UserAggregate
             }
 
             var newRefreshToken = JwtUtils.GenerateRefreshToken();
-            _refreshTokens.Add(new RefreshToken()
-            {
-                Token = newRefreshToken,
-                RefreshTokenCreationDate = DateTime.UtcNow,
-            });
+            _refreshTokens.Add(new RefreshToken(newRefreshToken));
             //TODO NOWY EVENT?
             return Convert.ToBase64String(newRefreshToken);
             
@@ -68,7 +62,7 @@ namespace Service.IdentityServer.Domain.UserAggregate
             };
 
             var accessToken = JwtUtils.GenerateAccessToken(accessTokenInfo);
-            var refToken = RefreshTokens.Where(rt => Convert.ToBase64String(rt.Token).Equals(refreshToken)).FirstOrDefault();
+            var refToken = RefreshTokens.FirstOrDefault(rt => Convert.ToBase64String(rt.Token).Equals(refreshToken));
             refToken.AccessTokenCreationDate = DateTime.UtcNow;
             //TODO NOWY EVENT
             return accessToken;

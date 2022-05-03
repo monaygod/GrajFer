@@ -7,7 +7,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.IdentityServer.Application.UserAggregate.AddUser;
-
+using Service.IdentityServer.Domain.ValueObject;
 
 namespace Service.IdentityServer.Api.Controllers
 {
@@ -26,14 +26,6 @@ namespace Service.IdentityServer.Api.Controllers
         /// <summary>
         /// Login to APP
         /// </summary>
-        /// <remarks>
-        /// Sample request:
-        ///
-        ///     POST /Login
-        ///     {
-        ///     }
-        ///
-        /// </remarks>
         /// <param name="command"></param>
         /// <returns>Login to APP</returns>
         /// <response code="200">Request has succeeded</response>
@@ -70,11 +62,12 @@ namespace Service.IdentityServer.Api.Controllers
         }
         
         [HttpPost]
-        [AllowAnonymous]
+        [AuthorizeRoute("sa")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<AddUserCommandResult> AddUser(AddUserCommand command)
+        public async Task<IActionResult> AddUser(AddUserCommand command)
         {
-            return await _mediator.Send(command);
+            await _mediator.Send(command);
+            return Created("", new {});
         }
     }
 }

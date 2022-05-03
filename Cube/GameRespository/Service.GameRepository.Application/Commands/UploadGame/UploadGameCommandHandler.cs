@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Infrastructure.Application.Command.Interface;
 using Infrastructure.DDD.Interface;
 using MediatR;
-using Service.GameRepository.Domain.UserAggregate;
+using Service.GameRepository.Domain.GameFileAggregate;
 using Service.GameRepository.Repository;
 
 namespace Service.GameRepository.Application.Commands.UploadGame

@@ -20,10 +20,10 @@ namespace Service.GameServer.Repository
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IRepository<User>, UserRepository>();
-            services.AddScoped<UserRepository, UserRepository>();
-            services.AddScoped<IUnitOfWork<UserContext>, UnitOfWork<UserContext>>();
-            services.AddScoped<UnitOfWork<UserContext>, UnitOfWork<UserContext>>();
+            services.AddScoped<IRepository<Room>, RoomRepository>();
+            services.AddScoped<RoomRepository, RoomRepository>();
+            services.AddScoped<IUnitOfWork<GameDbContext>, UnitOfWork<GameDbContext>>();
+            services.AddScoped<UnitOfWork<GameDbContext>, UnitOfWork<GameDbContext>>();
             
             var connectionStringBuilder = new SqliteConnectionStringBuilder
             {
@@ -34,15 +34,15 @@ namespace Service.GameServer.Repository
            //var connection = new SqliteConnection(connectionString);
            ////connection.Open();  //see https://github.com/aspnet/EntityFramework/issues/6968
            //services.AddDbContext<UserContext>(options => options.UseSqlite(connection));
-           services.AddDbContext<UserContext>();
+           services.AddDbContext<GameDbContext>();
             
             services.AddAutoMapper(
                 (serviceProvider, automapper) =>
                 {
                     automapper.AddCollectionMappers();
-                    automapper.UseEntityFrameworkCoreModel<UserContext>(serviceProvider);
+                    automapper.UseEntityFrameworkCoreModel<GameDbContext>(serviceProvider);
                 },
-                typeof(UserContext).Assembly);
+                typeof(GameDbContext).Assembly);
         }
 
         public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)

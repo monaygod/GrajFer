@@ -22,9 +22,8 @@ namespace Service.IdentityServer.Api
         {
             services.AddScoped<IUnitOfWork<UserContext>, UnitOfWork<UserContext>>();
             
-            //services.AddScoped<IIntegrationEventDispatcher<UserContext>, IntegrationEventDispatcher<UserContext>>();
+            services.AddScoped<IIntegrationEventDispatcher<UserContext>, IntegrationEventDispatcher<UserContext>>();
             services.AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>();
-            //services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);  //todo
         }
 
         public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -2,13 +2,13 @@
 using System.Threading.Tasks;
 using Infrastructure.Application.Command.Interface;
 using Infrastructure.DDD.Interface;
-using Service.IdentityServer.Application.UserAggregate.Login;
+using MediatR;
 using Service.IdentityServer.Domain.UserAggregate;
 using Service.IdentityServer.Repository;
 
 namespace Service.IdentityServer.Application.UserAggregate.AddUser
 {
-    public class AddUserCommandHandler : ICommandHandlerBase<AddUserCommand, AddUserCommandResult>
+    public class AddUserCommandHandler : ICommandHandlerBase<AddUserCommand>
     {
         private readonly UserRepository _userRepository;
         private readonly IUnitOfWork<UserContext> _unitOfWork;
@@ -22,15 +22,18 @@ namespace Service.IdentityServer.Application.UserAggregate.AddUser
             _unitOfWork = unitOfWork;
             _dbContext = dbContext;
         }
-        public async Task<AddUserCommandResult> Handle(AddUserCommand command, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(AddUserCommand command, CancellationToken cancellationToken)
         {
-            _dbContext.NoTaks.Add(NoTak.Create());
-            _dbContext.Users.Add(User.Create());
-            _dbContext.SaveChanges();
-            var result = new AddUserCommandResult()
-            {
-            };
-            return result;
+            _dbContext.Users.Add(
+                new User(
+                    command.Id,
+                    command.UserName,
+                    command.Password,
+                    command.Claims
+                    )
+                );
+            await _dbContext.SaveChangesAsync(cancellationToken);
+            return Unit.Value;
         }
     }
 }

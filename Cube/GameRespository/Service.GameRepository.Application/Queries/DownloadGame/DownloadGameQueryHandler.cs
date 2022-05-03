@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Infrastructure.Application.Query.Interface;
 using Microsoft.AspNetCore.Mvc;
-using Service.GameRepository.Domain.UserAggregate;
+using Service.GameRepository.Domain.GameFileAggregate;
 
 namespace Service.GameRepository.Application.Queries.DownloadGame;
 

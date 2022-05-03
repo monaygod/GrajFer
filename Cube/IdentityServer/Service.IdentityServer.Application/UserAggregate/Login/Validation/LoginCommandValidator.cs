@@ -9,12 +9,12 @@ namespace Service.IdentityServer.Application.UserAggregate.Login.Validation
         {
             RuleFor(x => x.UserName)
                 .NotNull()
-                .NotEmpty();
-                //.WithMessage("Wrong username format!");
+                .NotEmpty()
+                .WithMessage("Wrong username format!");
             RuleFor(x => x.Password)
                 .NotNull()
-                .NotEmpty();
-               // .WithMessage("Wrong password format!");
+                .NotEmpty()
+                .WithMessage("Wrong password format!");
         }
     }
 }

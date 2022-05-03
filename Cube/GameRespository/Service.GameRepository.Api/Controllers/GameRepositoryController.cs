@@ -10,7 +10,7 @@ using Service.GameRepository.Application.Queries.GetGamesList;
 namespace Service.GameRepository.Api.Controllers
 {
     [ApiController]
-    [Route("api/auth/[action]")]
+    [Route("api/repository/[action]")]
     [AuthorizeRoute]
     public class GameRepositoryController : ControllerBase
     {

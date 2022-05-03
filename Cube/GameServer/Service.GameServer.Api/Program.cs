@@ -1,4 +1,5 @@
 using Infrastructure.ExtensionMethods;
+using Infrastructure.SwaggerGenerator;
 using Microsoft.Extensions.Hosting;
 
 namespace Service.GameServer.Api

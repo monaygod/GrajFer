@@ -1,5 +1,4 @@
 ﻿using System;
-using Infrastructure.DDD;
 
 namespace Service.IdentityServer.Domain.ValueObject
 {
@@ -8,5 +7,13 @@ namespace Service.IdentityServer.Domain.ValueObject
         public byte[] Token { get; set; }
         public DateTime RefreshTokenCreationDate { get; set; }
         public DateTime AccessTokenCreationDate { get; set; }
+        
+        private RefreshToken(){ }
+
+        public RefreshToken(byte[] token)
+        {
+            Token = token;
+            RefreshTokenCreationDate = DateTime.UtcNow;
+        }
     }
 }

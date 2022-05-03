@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Infrastructure.DDD.Interface;
-using Infrastructure.Mapping;
 using Service.IdentityServer.Domain.UserAggregate;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -18,28 +17,30 @@ namespace Service.IdentityServer.Repository
         {
             _context = context;
         }
-        public User GetById(int id)
+        public User GetById(Guid id)
         {
-            //TODO lazyloading
-            //var anyref = _context.UserRefreshTokens.ToList();
-            //var queryResult = _context.Users
-            //    .FirstOrDefault();
+            var user = _context.Users.Include(x => x.Password)
+                .Include(x => x.Permission)
+                .Include(x => x.RefreshTokens)
+                .FirstOrDefault(x => x.Id == id);
             
-            return User.Create();
+            return user;
         }
         
         public User GetByUserName(string userName)
         {
             try
             {
-                //var queryResult = _context.Users
-                //    .First(x => x.UserName == userName);
-
-                return User.Create();
+                var user = _context.Users.Include(x => x.Password)
+                    .Include(x => x.Permission)
+                    .Include(x => x.RefreshTokens)
+                    .First(x => x.UserName == userName);
+            
+                return user;
             }
             catch
             {
-                throw new BadHttpRequestException("Wrong email! Cannot find user!");
+                throw new BadHttpRequestException("Wrong Username! Cannot find user!");
             }
             
         }
@@ -48,10 +49,12 @@ namespace Service.IdentityServer.Repository
         {
             try
             {
-                //var user = _context.Users
-                //    .First(x => x.RefreshTokens.Any(y=>y.Token == refreshToken));
-                //return user;
-                return User.Create();
+                var user = _context.Users.Include(x => x.Password)
+                    .Include(x => x.Permission)
+                    .Include(x => x.RefreshTokens)
+                    .First(x => x.RefreshTokens.Any(y=>y.Token==refreshToken));
+            
+                return user;
             }
             catch
             {
@@ -59,24 +62,20 @@ namespace Service.IdentityServer.Repository
             }
         }
 
-        public Task<User> GetByIdAsync(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public User GetById(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<User> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var user = _context.Users.Include(x => x.Password)
+                .Include(x => x.Permission)
+                .Include(x => x.RefreshTokens)
+                .FirstOrDefaultAsync(x => x.Id == id);
+            
+            return user;
         }
 
-        public User Add(User id)
+        public User Add(User user)
         {
-            throw new System.NotImplementedException();
+            _context.Users.Add(user);
+            return user;
         }
     }
 }

@@ -8,6 +8,8 @@ using Infrastructure.Application.Query.Interface;
 using Infrastructure.Application.Query.PipelineDecorator;
 using Infrastructure.Database;
 using Infrastructure.ExtensionMethods;
+using Infrastructure.IntegrationEvent;
+using Infrastructure.IntegrationEvent.Interface;
 using Infrastructure.Mapping;
 using Infrastructure.Middleware;
 using MediatR;
@@ -18,6 +20,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using RabbitMQ.Client;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Infrastructure.Startup
@@ -49,15 +52,21 @@ namespace Infrastructure.Startup
             services.AddMediatR(
                 ExtensionMethods.ExtensionMethods.GetAssemblies()
                     .ToArray());
-            // services.AddSingleton(HawkMapperConfigurationExpression.CreateMapper());
+            
             services.InstallGenericInterfaceWithAllInheritedClasses(typeof(ICommandValidator<>));
             services.InstallGenericInterfaceWithAllInheritedClasses(typeof(IQueryValidator<>));
             
             services.AddScoped<SqlConnection>(x =>
-                new SqlConnection("Server=10.10.1.251;Database=dadelo-all;User Id=Jastrzab;Password=yPe7cJ9hYVx5fXp;")
+                new SqlConnection("")
             );
             services.AddScoped<TransactionManager>();
             services.AddScoped<MappingManager>();
+            services.AddSingleton<IEventBus, RabbitEventBus>();
+            services.AddSingleton<IRabbitPersistentConnection>(sp =>
+            {
+                var factory = new ConnectionFactory();
+                return new RabbitPersistentConnection(factory);
+            });
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(DebugQueryHandlerDecorator<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(QueryHandlerValidationDecorator<,>));
@@ -147,6 +156,28 @@ namespace Infrastructure.Startup
             app.UseAuthorization();
             app.UseCors();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            
+            if (env.IsDevelopment())
+            {
+                app.MapWhen(context => context.Request.Path.StartsWithSegments("/api/game"),
+                    userApp =>
+                    {
+                        userApp.UseSpa(spa =>
+                        {
+                            spa.UseProxyToSpaDevelopmentServer("https://localhost:5002");
+                        });
+                    });
+                app.MapWhen(context => context.Request.Path.StartsWithSegments("/api/repository"),
+                    userApp =>
+                    {
+                        userApp.UseSpa(spa =>
+                        {
+                            spa.UseProxyToSpaDevelopmentServer("https://localhost:5003");
+                        });
+                    });
+                //to jest przekierowanie do aplikacji webowej (możliwosć)
+                //app.UseSpa(x=>x.UseProxyToSpaDevelopmentServer("http://localhost:4200"));
+            }
         }
     }
 }

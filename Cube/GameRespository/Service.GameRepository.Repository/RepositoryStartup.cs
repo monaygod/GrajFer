@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Service.GameRepository.Domain.UserAggregate;
+using Service.GameRepository.Domain.GameFileAggregate;
 
 namespace Service.GameRepository.Repository
 {

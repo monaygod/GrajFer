@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Infrastructure.Application.Command.Interface;
 using Infrastructure.DDD.Interface;
-using Infrastructure.Mapping;
 using Service.IdentityServer.Repository;
 using Microsoft.IdentityModel.Tokens;
 

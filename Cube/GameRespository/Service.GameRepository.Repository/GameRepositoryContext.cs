@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Service.GameRepository.Domain.UserAggregate;
+using Service.GameRepository.Domain.GameFileAggregate;
 
 #nullable disable
 

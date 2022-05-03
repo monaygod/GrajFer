@@ -1,5 +1,8 @@
+using System.Text.Json.Serialization;
 using Infrastructure.DDD;
 using Infrastructure.DDD.Interface;
+using Infrastructure.IntegrationEvent;
+using Infrastructure.IntegrationEvent.Interface;
 using Infrastructure.Startup;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,11 +21,10 @@ namespace Service.GameServer.Api
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IUnitOfWork<UserContext>, UnitOfWork<UserContext>>();
+            services.AddScoped<IUnitOfWork<GameDbContext>, UnitOfWork<GameDbContext>>();
             
-            //services.AddScoped<IIntegrationEventDispatcher<UserContext>, IntegrationEventDispatcher<UserContext>>();
+            services.AddScoped<IIntegrationEventDispatcher<GameDbContext>, IntegrationEventDispatcher<GameDbContext>>();
             services.AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>();
-            //services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);  //todo
         }
 
         public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)

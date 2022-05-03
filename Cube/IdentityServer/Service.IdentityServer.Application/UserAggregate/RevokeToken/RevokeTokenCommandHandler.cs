@@ -1,11 +1,9 @@
-﻿using System;
-using System.Security.Authentication;
+﻿using System.Security.Authentication;
 using System.Threading;
 using System.Threading.Tasks;
 using Infrastructure.Application.Command.Interface;
 using Infrastructure.Auth.Model;
 using Infrastructure.DDD.Interface;
-using Infrastructure.Mapping;
 using Service.IdentityServer.Repository;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -27,11 +25,10 @@ namespace Service.IdentityServer.Application.UserAggregate.RevokeToken
         }
         public async Task<Unit> Handle(RevokeTokenCommand request, CancellationToken cancellationToken)
         {
-
             if(_context.HttpContext.Items["User"] == null) throw new AuthenticationException("Authentication error!");
 
-            var userid = Convert.ToInt32(((AccessToken) _context.HttpContext.Items["User"])?.UserId);
-            var user = _userRepository.GetById(userid);
+            var userid = ((AccessToken) _context.HttpContext.Items["User"])!.UserId;
+            var user = await _userRepository.GetByIdAsync(userid);
 
             user.RevokeRefreshToken(request.RefreshToken);
             _unitOfWork.RegisterAggregateRoot(user);

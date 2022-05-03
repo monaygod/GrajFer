@@ -27,16 +27,12 @@ namespace Infrastructure.Auth.JwtUtils
             if (accessToken == null)
             {
                 throw new AuthenticationException("Unauthorized!");
-               // context.Result = new JsonResult(new {message = "Unauthorized"})
-               //     {StatusCode = StatusCodes.Status401Unauthorized};
             }
-//
+
             if (scopeNeeded != "" && !accessToken.Scopes.Contains(scopeNeeded))
                 throw new UnauthorizedAccessException("Access denied!");
-                //context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
             if (accessToken.ExpTime < DateTime.UtcNow)
                 throw new SecurityTokenExpiredException("Token Expired");
-                //context.Result = new JsonResult(new { message = "Token Expired" }) { StatusCode = StatusCodes.Status401Unauthorized };
 
         }
     }
