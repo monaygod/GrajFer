@@ -8,7 +8,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Service.GameServer.Domain.UserAggregate;
+using Service.GameServer.Domain.PlayerAggregate;
+using Service.GameServer.Domain.RoomAggregate;
 
 namespace Service.GameServer.Repository
 {
@@ -22,18 +23,13 @@ namespace Service.GameServer.Repository
         {
             services.AddScoped<IRepository<Room>, RoomRepository>();
             services.AddScoped<RoomRepository, RoomRepository>();
+            services.AddScoped<IRepository<Player>, PlayerRepository>();
+            services.AddScoped<PlayerRepository, PlayerRepository>();
+            //services.AddScoped<IRepository<Game>, GameRepository>();
+            services.AddScoped<GameRepository, GameRepository>();
             services.AddScoped<IUnitOfWork<GameDbContext>, UnitOfWork<GameDbContext>>();
             services.AddScoped<UnitOfWork<GameDbContext>, UnitOfWork<GameDbContext>>();
             
-            var connectionStringBuilder = new SqliteConnectionStringBuilder
-            {
-                DataSource = "w:\\Database.db",
-                Pooling = false,
-            };
-           //var connectionString = connectionStringBuilder.ToString();
-           //var connection = new SqliteConnection(connectionString);
-           ////connection.Open();  //see https://github.com/aspnet/EntityFramework/issues/6968
-           //services.AddDbContext<UserContext>(options => options.UseSqlite(connection));
            services.AddDbContext<GameDbContext>();
             
             services.AddAutoMapper(

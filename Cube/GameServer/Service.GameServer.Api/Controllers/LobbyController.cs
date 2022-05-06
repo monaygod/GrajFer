@@ -23,7 +23,7 @@ namespace Service.GameServer.Api.Controllers
         }
         
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetRoomListQueryResult))]
         public async Task<IActionResult> GetRoomList(GetRoomListQuery command)
         {
             return Ok(await _mediator.Send(command));

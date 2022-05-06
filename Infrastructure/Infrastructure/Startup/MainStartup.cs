@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using Infrastructure.Application.Command.Interface;
 using Infrastructure.Application.Command.PipelineDecorator;
@@ -61,7 +62,7 @@ namespace Infrastructure.Startup
             );
             services.AddScoped<TransactionManager>();
             services.AddScoped<MappingManager>();
-            services.AddSingleton<IEventBus, RabbitEventBus>();
+            services.AddSingleton<IEventBus, FakeEventBuss>();
             services.AddSingleton<IRabbitPersistentConnection>(sp =>
             {
                 var factory = new ConnectionFactory();
@@ -145,7 +146,6 @@ namespace Infrastructure.Startup
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v2/swagger.json", $"{EntryAssemblyName} v2"));
             }
-            app.UseHttpsRedirection();
 
             //autoryzacja
             app.UseMiddleware<ErrorHandlerMiddleware>();
@@ -159,22 +159,22 @@ namespace Infrastructure.Startup
             
             if (env.IsDevelopment())
             {
-                app.MapWhen(context => context.Request.Path.StartsWithSegments("/api/game"),
-                    userApp =>
-                    {
-                        userApp.UseSpa(spa =>
-                        {
-                            spa.UseProxyToSpaDevelopmentServer("https://localhost:5002");
-                        });
-                    });
-                app.MapWhen(context => context.Request.Path.StartsWithSegments("/api/repository"),
-                    userApp =>
-                    {
-                        userApp.UseSpa(spa =>
-                        {
-                            spa.UseProxyToSpaDevelopmentServer("https://localhost:5003");
-                        });
-                    });
+                //app.MapWhen(context => context.Request.Path.StartsWithSegments("/api/game"),
+                //    userApp =>
+                //    {
+                //        userApp.UseSpa(spa =>
+                //        {
+                //            spa.UseProxyToSpaDevelopmentServer("https://localhost:5002");
+                //        });
+                //    });
+                //app.MapWhen(context => context.Request.Path.StartsWithSegments("/api/repository"),
+                //    userApp =>
+                //    {
+                //        userApp.UseSpa(spa =>
+                //        {
+                //            spa.UseProxyToSpaDevelopmentServer("https://localhost:5003");
+                //        });
+                //    });
                 //to jest przekierowanie do aplikacji webowej (możliwosć)
                 //app.UseSpa(x=>x.UseProxyToSpaDevelopmentServer("http://localhost:4200"));
             }

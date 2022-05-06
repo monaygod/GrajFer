@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Service.GameServer.Application.Hubs;
 using Service.GameServer.Repository;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Service.GameServer.Api
 {
@@ -25,10 +27,17 @@ namespace Service.GameServer.Api
             
             services.AddScoped<IIntegrationEventDispatcher<GameDbContext>, IntegrationEventDispatcher<GameDbContext>>();
             services.AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>();
+            services.AddScoped<GameHub>();
+            services.AddSignalR();
         }
 
         public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHub<GameHub>("api/game/hub");
+            });
         }
     }
 }

@@ -1,5 +1,7 @@
+using System.Security.Authentication;
 using Infrastructure.ExtensionMethods;
 using Infrastructure.SwaggerGenerator;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
 namespace Service.GameServer.Api
@@ -20,6 +22,7 @@ namespace Service.GameServer.Api
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.ConfigureKestrel(x => x.ConfigureHttpsDefaults(y => y.SslProtocols = SslProtocols.Tls12));
                     webBuilder.UseMainStartup();
                 });
     }

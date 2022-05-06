@@ -1,6 +1,6 @@
 ﻿using System;
 using Infrastructure.Application.Query;
-using Service.GameServer.Domain.UserAggregate;
+using Service.GameServer.Domain.RoomAggregate;
 
 namespace Service.GameServer.Application.Queries.GetRoomList;
 

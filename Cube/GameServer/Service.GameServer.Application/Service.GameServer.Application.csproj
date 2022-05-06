@@ -13,10 +13,7 @@
 
     <ItemGroup>
       <PackageReference Include="FluentValidation" Version="10.3.3" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Queries" />
+      <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
     </ItemGroup>
 
 </Project>

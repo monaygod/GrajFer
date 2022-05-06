@@ -1,5 +1,7 @@
 using Infrastructure.DDD;
 using Infrastructure.DDD.Interface;
+using Infrastructure.IntegrationEvent;
+using Infrastructure.IntegrationEvent.Interface;
 using Infrastructure.Startup;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,9 +22,8 @@ namespace Service.GameRepository.Api
         {
             services.AddScoped<IUnitOfWork<GameRepositoryContext>, UnitOfWork<GameRepositoryContext>>();
             
-            //services.AddScoped<IIntegrationEventDispatcher<UserContext>, IntegrationEventDispatcher<UserContext>>();
+            services.AddScoped<IIntegrationEventDispatcher<GameRepositoryContext>, IntegrationEventDispatcher<GameRepositoryContext>>();
             services.AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>();
-            //services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);  //todo
         }
 
         public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)

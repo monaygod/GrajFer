@@ -18,7 +18,7 @@ public class DownloadGameQueryHandler : IQueryHandler<DownloadGameQuery, Downloa
     public async Task<DownloadGameQueryResult> Handle(DownloadGameQuery request, CancellationToken cancellationToken)
     {
         GameFile game = _gameRepository.GetById(request.Id);
-        const string contentType = "application/png";
+        const string contentType = "application/x-zip-compressed";
         return new DownloadGameQueryResult()
         {
             File = new FileContentResult(System.IO.File.ReadAllBytes(game.FilePath), contentType)
