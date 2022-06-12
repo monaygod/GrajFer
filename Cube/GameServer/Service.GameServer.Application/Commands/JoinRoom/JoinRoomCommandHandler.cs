@@ -6,6 +6,7 @@ using Infrastructure.Auth.Model;
 using Infrastructure.DDD.Interface;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Service.GameServer.Domain.PlayerAggregate;
 using Service.GameServer.Repository;
 
 namespace Service.GameServer.Application.Commands.JoinRoom
@@ -44,7 +45,8 @@ namespace Service.GameServer.Application.Commands.JoinRoom
             
             if (player is null)
             {
-                throw new BadHttpRequestException("Player not connected to socket!");
+                player = new Player(userId);
+                //throw new BadHttpRequestException("Player not connected to socket!");
             }
             
             if (!room.JoinRoom(player))

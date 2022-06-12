@@ -22,6 +22,12 @@ public class Player : Entity, IAggregateRoot
         _signalrConnectionId = signalrConnectionId;
     }
 
+    public Player(Guid playerId)
+    {
+        _playerId = playerId;
+        _signalrConnectionId = String.Empty;
+    }
+
     public void SetConnectionId(string signalrConnectionId)
     {
         _signalrConnectionId = signalrConnectionId;

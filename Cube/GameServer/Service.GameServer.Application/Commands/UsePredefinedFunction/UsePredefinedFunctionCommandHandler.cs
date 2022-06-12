@@ -7,6 +7,7 @@ using Infrastructure.DDD.Interface;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Service.GameServer.Application.Commands.CreateRoom;
+using Service.GameServer.Domain.PlayerAggregate;
 using Service.GameServer.Repository;
 
 namespace Service.GameServer.Application.Commands.UsePredefinedFunction
@@ -36,7 +37,8 @@ namespace Service.GameServer.Application.Commands.UsePredefinedFunction
             var user = await _playerRepository.GetByIdAsync(userId);
             if (user is null)
             {
-                throw new BadHttpRequestException("Player not connected to socket!");
+                user = new Player(userId);
+                //throw new BadHttpRequestException("Player not connected to socket!");
             }
             var room = await _roomRepository.GetByIdAsync(command.RoomId);
             if (!room.IsPlayerInRoom(user))

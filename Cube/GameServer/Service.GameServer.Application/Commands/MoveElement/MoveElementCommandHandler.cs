@@ -6,6 +6,7 @@ using Infrastructure.Auth.Model;
 using Infrastructure.DDD.Interface;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Service.GameServer.Domain.PlayerAggregate;
 using Service.GameServer.Repository;
 
 namespace Service.GameServer.Application.Commands.MoveElement
@@ -35,7 +36,8 @@ namespace Service.GameServer.Application.Commands.MoveElement
             var user = _playerRepository.GetById(userId);
             if (user is null)
             {
-                throw new BadHttpRequestException("Player not connected to socket!");
+                user = new Player(userId);
+                //throw new BadHttpRequestException("Player not connected to socket!");
             }
             var room = _roomRepository.GetById(command.RoomId);
             if (!room.IsPlayerInRoom(user))
